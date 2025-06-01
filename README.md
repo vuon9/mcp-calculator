@@ -1,6 +1,6 @@
 # MCP Calculator
 
-A demonstration of a Model Context Protocol (MCP) server built using the `github.com/mark3labs/mcp-go` library. It exposes a simple "calculate" tool.
+A demonstration of a Model Context Protocol (MCP) server, it exposes a simple "calculate" tool.
 
 ## Features
 
