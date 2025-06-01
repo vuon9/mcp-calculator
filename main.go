@@ -27,7 +27,7 @@ func main() {
 		),
 		mcp.WithArray("numbers",
 			mcp.Required(),
-			mcp.Description("Array of numbers for operations like sum or average"),
+			mcp.Description("Array of numbers for operation"),
 		),
 	)
 
