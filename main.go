@@ -16,22 +16,26 @@ import (
 
 func main() {
 	cfg, _ := config.LoadConfig()
-	slog.Info("Loaded configuration", "version", cfg.AppVersion)
+	slog.Info("Loaded configuration", "config", slog.AnyValue(cfg))
 
 	s := server.NewMCPServer(
-		"Calculator Demo",
+		"MCP Play Server",
 		cfg.AppVersion,
 		server.WithToolCapabilities(false),
 		server.WithRecovery(),
 		server.WithLogging(),
 	)
 
-	// Add a calculator tool
-	calculatorTool := tools.NewCalculateTool()
-	s.AddTool(calculatorTool.Definition(), calculatorTool.Handle)
+	tools := []tools.Tool{
+		tools.NewCalculateTool(),
+		tools.NewCurrentWeatherTool(cfg),
+	}
+
+	for _, tool := range tools {
+		s.AddTool(tool.Definition(), tool.Handle)
+	}
 
 	server := server.NewStreamableHTTPServer(s, server.WithHeartbeatInterval(time.Second*10))
-
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 

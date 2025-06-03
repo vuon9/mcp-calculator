@@ -5,9 +5,15 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type OpenWeatherMapConfig struct {
+	BaseURL string `env:"BASE_URL" envDefault:"https://api.openweathermap.org/data/2.5/"`
+	APIKey  string `env:"API_KEY" envDefault:""`
+}
+
 type Config struct {
-	AppVersion           string `env:"APP_VERSION" envDefault:"0.0.0"`
-	OpenWeatherMapApiKey string `env:"OPEN_WEATHER_MAP_API_KEY" envDefault:""`
+	AppVersion string `env:"APP_VERSION" envDefault:"0.0.0"`
+
+	OpenWeatherMap OpenWeatherMapConfig `envPrefix:"OPEN_WEATHER_MAP_" envDefault:""`
 }
 
 const defaultConfigFile = ".env"

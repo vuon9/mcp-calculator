@@ -1,35 +1,25 @@
-# MCP Calculator
+# MCP Play
 
-A demonstration of a Model Context Protocol (MCP) server, it exposes a simple "calculate" tool.
+A demonstration of a Model Context Protocol (MCP) server in Go with some simple tools.
 
 ## Features
 
 *   **MCP Server Implementation**: Built on `github.com/mark3labs/mcp-go/server`, extended from the default example server.
-*   **Calculator Tool**:
-    *   Name: `calculate`
-    *   Description: Perform basic arithmetic operations.
-    *   Operations: `add`, `subtract`, `multiply`, `divide`.
-    *   Accepts an array of numbers for calculations.
+*   **Tools**: (see more: `internal/tools`)
+    - `calculate`: tool that supports basic arithmetic operations (addition, subtraction, multiplication, division).
+    - `current_weather`: tool that fetches current weather data using the OpenWeatherMap API. It requires an API key set in the environment variable `OPENWEATHERMAP_API_KEY`.
+
 *   **HTTP Transport**: Uses `StreamableHTTPServer` for communication.
-
-## Prerequisites
-
-*   Go
 
 ## How to Run
 
 1.  **Clone:**
     ```bash
-    git clone https://github.com/vuon9/mcp-calculator.git
-    cd mcp-calculator
+    git clone https://github.com/vuon9/mcp-play.git
+    cd mcp-play
     ```
 
-2.  **Install dependencies:**
-    ```bash
-    go mod tidy
-    ```
-
-3.  **Run the server:**
+2.  **Run the server:**
     ```bash
     go run main.go
     ```
@@ -53,7 +43,7 @@ First, you need to initialize a session. The server is stateful by default and w
   "params": {
     "protocolVersion": "2025-03-26",
     "clientInfo": {
-      "name": "my-calculator-client",
+      "name": "my-client",
       "version": "0.1.0"
     }
   }
@@ -84,9 +74,9 @@ Mcp-Session-Id: <session-id-from-server>
 ```
 **Note:** Store the `Mcp-Session-Id` from the response header for subsequent requests.
 
-### 2. Call the Calculator Tool
+### 2. Call a tool
 
-To use the calculator:
+To use the `calculate` tool:
 
 **Request (POST to `http://localhost:8080/mcp`):**
 *Include the `Mcp-Session-Id` header.*
@@ -130,7 +120,7 @@ Open VSCode settings and add the following configuration to enable the MCP serve
     // ...
     "mcp": {
       "servers": {
-        "calculate": {
+        "mcp-play": {
           "url": "http://localhost:8080/mcp",
         }
       }
