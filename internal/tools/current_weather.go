@@ -49,9 +49,11 @@ func NewCurrentWeatherTool(cfg *config.Config) *currentWeather {
 func (w *currentWeather) Definition() mcp.Tool {
 	return mcp.NewTool("current_weather",
 		mcp.WithString("lat",
+			mcp.Required(),
 			mcp.Description("Latitude of the location (optional, e.g., '37.7749')"),
 		),
 		mcp.WithString("long",
+			mcp.Required(),
 			mcp.Description("Longitude of the location (optional, e.g., '-122.4194')"),
 		),
 		mcp.WithString("units",

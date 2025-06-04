@@ -71,6 +71,8 @@ func (c *calculate) Handle(ctx context.Context, request mcp.CallToolRequest) (*m
 			}
 			result /= num
 		}
+	default:
+		return mcp.NewToolResultError("invalid operation"), nil
 	}
 
 	return mcp.NewToolResultText(fmt.Sprintf("%.2f", result)), nil
