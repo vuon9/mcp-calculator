@@ -48,6 +48,7 @@ func NewCurrentWeatherTool(cfg *config.Config) *currentWeather {
 
 func (w *currentWeather) Definition() mcp.Tool {
 	return mcp.NewTool("current_weather",
+		mcp.WithDescription("Fetches the current weather for a given location using OpenWeatherMap API"),
 		mcp.WithString("lat",
 			mcp.Required(),
 			mcp.Description("Latitude of the location (optional, e.g., '37.7749')"),
