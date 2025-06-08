@@ -7,7 +7,7 @@ A demonstration of a Model Context Protocol (MCP) server in Go with some simple 
 *   **MCP Server Implementation**: Built on `github.com/mark3labs/mcp-go/server`, extended from the default example server.
 *   **Tools**: (see more: `internal/tools`)
     - `calculate`: tool that supports basic arithmetic operations (addition, subtraction, multiplication, division).
-    - `current_weather`: tool that fetches current weather data using the OpenWeatherMap API. It requires an API key set in the environment variable `OPENWEATHERMAP_API_KEY`.
+    - `current_weather`: tool that fetches current weather data using the OpenWeatherMap API. It requires an API key, see more in `.env.example`.
 
 *   **HTTP Transport**: Uses `StreamableHTTPServer` for communication.
 
